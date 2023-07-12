@@ -7,15 +7,68 @@
     ];
 
   home-manager.users.andreymlv = { pkgs, ... }: {
-    # Home Manager needs a bit of information about you and the
-    # paths it should manage.
+    nixpkgs.config.allowUnfree = true;
+
     home.username = "andreymlv";
     home.homeDirectory = "/home/andreymlv";
 
-    # Packages that should be installed to the user profile.
-    home.packages = [                               
-      pkgs.htop
-      pkgs.fortune
+    home.packages = with pkgs; [
+      # Terminal
+      htop
+      neofetch
+      wget
+      curl
+      nnn
+      lazygit
+
+      # Archives
+      atool
+      p7zip
+      unrar
+
+      # Neovim
+      neovim
+      python311Packages.pynvim
+      nodePackages.neovim
+      luajitPackages.jsregexp
+      git
+      gnumake
+      fd
+      ripgrep
+      trashy
+      unzip
+      stylua
+
+      # Programming
+      gcc
+      cmake
+      clang-tools
+      cppcheck
+      mold
+      man-pages
+      man-pages-posix
+      cargo
+
+      # Internet
+      firefox
+      telegram-desktop
+      discord
+      transmission
+      wireguard-tools
+
+      # Multimedia
+      mpd
+      ncmpcpp
+      keepassxc
+      mpv
+      imv
+      zathura
+
+      # Office
+      libreoffice
+      hunspell
+      hunspellDicts.en_US
+      hunspellDicts.ru_RU
     ];
 
     programs.git = {
@@ -24,17 +77,23 @@
       userEmail = "ndrmlv@ya.ru";
     };
 
-    # This value determines the Home Manager release that your
-    # configuration is compatible with. This helps avoid breakage
-    # when a new Home Manager release introduces backwards
-    # incompatible changes.
-    #
-    # You can update Home Manager without changing this value. See
-    # the Home Manager release notes for a list of state version
-    # changes in each release.
+    programs.mpv = {
+      enable = true;
+      config.hwdec = "auto";
+    };
+
+    home.pointerCursor = {
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
+      size = 24;
+      x11 = {
+        enable = true;
+        defaultCursor = "Adwaita";
+      };
+    };
+    
     home.stateVersion = "23.05";
 
-    # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
   };
 }
