@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ inputs, ... }:
 
 {
   imports =
@@ -14,55 +14,62 @@
 
     home.packages = with pkgs; [
       # Terminal
-      htop
-      neofetch
-      wget
       curl
-      nnn
-      lazygit
+      fd
+      htop
       inetutils
+      lazygit
+      neofetch
+      nnn
+      ripgrep
+      trashy
+      wget
 
       # Archives
       atool
       p7zip
       unrar
+      unzip
 
       # Neovim
-      neovim
-      python311Packages.pynvim
-      nodePackages.neovim
       luajitPackages.jsregexp
-      git
-      gnumake
-      fd
-      ripgrep
-      trashy
-      unzip
+      neovim
+      nodePackages.neovim
+      python311Packages.pynvim
+
+      # LSP and formatters
+      lua-language-server
       stylua
+      clang-tools
+      nil
+      nixpkgs-fmt
+      cmake-language-server
+      cmake-format
 
       # Programming
-      gcc
+      cargo
       cmake
-      clang-tools
       cppcheck
-      mold
+      gcc
+      git
+      gnumake
       man-pages
       man-pages-posix
-      cargo
+      mold
 
       # Internet
+      discord
       firefox
       telegram-desktop
-      discord
       transmission
       wireguard-tools
 
       # Multimedia
-      mpd
-      ncmpcpp
-      keepassxc
-      mpv
       imv
+      keepassxc
+      mpd
+      mpv
+      ncmpcpp
       zathura
 
       # Office
@@ -92,7 +99,7 @@
         defaultCursor = "Adwaita";
       };
     };
-    
+
     home.stateVersion = "23.05";
 
     programs.home-manager.enable = true;
