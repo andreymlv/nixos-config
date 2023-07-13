@@ -20,6 +20,7 @@
       curl
       nnn
       lazygit
+      inetutils
 
       # Archives
       atool
